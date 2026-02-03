@@ -6,15 +6,14 @@
 <title>شركة نهج | الملف التعريفي</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-<link href="styles_v16.css" rel="stylesheet"/>
-
+<link href="styles_v16_mobile.css" rel="stylesheet"/>
 </head>
 <body>
 <!-- MAIN NAVBAR -->
 <header class="main-navbar">
 <div class="container">
 <nav class="navbar">
-<a aria-label="العودة للرئيسية" class="logo logo-link" href="index.html">
+<a aria-label="العودة للرئيسية" class="logo logo-link" href="index_v7.html">
 <img alt="شعار نهج" src="picnahj.png"/>
 <div class="logo-tagline">
 <span class="logo-line1" data-i18n="logo_line1">نهج للتدريب والتثقيف الصحي</span>
@@ -22,7 +21,11 @@
 <span class="logo-line2" data-i18n="logo_line2">لخدمات الأعمال</span>
 </div>
 </a>
-<ul class="nav-links">
+
+        <button class="nav-toggle-btn" type="button" aria-label="فتح القائمة" aria-expanded="false">
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+        <ul class="nav-links">
 <li><a data-i18n="nav_about" href="#about">عن نهج</a></li>
 <li><a data-i18n="nav_services" href="#services">خدماتنا</a></li>
 <li class="nav-dropdown">
@@ -38,16 +41,10 @@
 </li>
 <li><a data-i18n="nav_partners" href="#partners">شركاؤنا</a></li>
 <li><a data-i18n="nav_contact" href="contactll.html">تواصل معنا</a></li>
-<li class="nav-join mobile-only">
-  <a data-i18n="join_trainer"
-     href="join_trainer.html"
-     target="_blank" rel="noopener">انضم كمدرب</a>
-</li>
-
 </ul>
 <div class="extras">
 <!-- ✅ انضم كمدرب (Google Form) -->
-<a class="join-trainer" href="join_trainer.html" rel="noopener" target="_blank">
+<a class="join-trainer" href="https://docs.google.com/forms/d/1YNvaM5DN7d3XdPBIm4qTIjkl8ZUjpSNucPohAw5igo4/edit?pli=1" rel="noopener" target="_blank">
 <i class="fa-solid fa-chalkboard-user join-trainer-icon" aria-hidden="true"></i>
 <span data-i18n="join_trainer">انضم كمدرب</span>
 </a>
@@ -60,7 +57,7 @@
 <!-- HERO (بدون بروتوتايب) -->
 <section aria-label="الواجهة الرئيسية" class="cover nahj-hero">
 <!-- استدعاء صورة الهيرو -->
-<img class="hero-bg-img" src="123.jpg" data-fixed-src="123.jpg" alt="صورة خلفية نهج" aria-hidden="true">
+<img alt="صورة خلفية نهج" aria-hidden="true" class="hero-bg-img" src="123.jpg"/>
 <div aria-hidden="true" class="nahj-hero__overlay"></div>
 <div class="container nahj-hero__container">
 <div class="nahj-hero__content">
@@ -485,7 +482,7 @@
 <h4 data-i18n="footer_links">روابط مهمة</h4>
 <ul>
 <li><a data-i18n="footer_link_about" href="#about">عن نهج</a></li><li><a data-i18n="footer_link_contact" href="contactll.html">تواصل معنا</a></li>
-<li><a class="footer-join-link" data-i18n="footer_link_join" href="join_trainer.html" rel="noopener" target="_blank">انضم كمدرب</a></li>
+<li><a class="footer-join-link" data-i18n="footer_link_join" href="https://docs.google.com/forms/d/1YNvaM5DN7d3XdPBIm4qTIjkl8ZUjpSNucPohAw5igo4/edit?pli=1" rel="noopener" target="_blank">انضم كمدرب</a></li>
 </ul>
 </div>
 <div class="footer-links">
@@ -534,17 +531,9 @@
 <div class="footer-bottom" data-i18n="footer_bottom">
     © جميع الحقوق محفوظة – شركة نهج للتدريب والتثقيف الصحي
   </div>
-
-
-  <!-- Mobile-only replacements -->
-
-
 </footer>
-
 <!-- EmailJS (newsletter send) -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script defer="True" src="./script_v16.js"></script>
-<script src="supabase_config.js"></script>
-
+<script defer="True" src="./script_v16.js"></script><script defer src="./script_mobile.js"></script>
 </body>
 </html>

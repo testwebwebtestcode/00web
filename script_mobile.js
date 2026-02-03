@@ -185,3 +185,50 @@
     if (!isMobile) closeMenu();
   });
 })();
+
+/* =========================
+   Nahj Mobile Navbar Toggle
+========================= */
+(() => {
+  const nav = document.querySelector(".navbar");
+  const btn = document.querySelector(".nav-toggle-btn");
+  if (!nav || !btn) return;
+
+  function setExpanded(isOpen){
+    btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  }
+
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const isOpen = nav.classList.toggle("nav-open");
+    setExpanded(isOpen);
+  });
+
+  // Close on outside click (mobile)
+  document.addEventListener("click", () => {
+    if (!window.matchMedia("(max-width: 980px)").matches) return;
+    nav.classList.remove("nav-open");
+    setExpanded(false);
+  });
+
+  // Prevent closing when clicking inside navbar
+  nav.addEventListener("click", (e) => e.stopPropagation());
+
+  // Close after clicking a link (mobile)
+  nav.querySelectorAll(".nav-links a").forEach(a => {
+    a.addEventListener("click", () => {
+      if (!window.matchMedia("(max-width: 980px)").matches) return;
+      nav.classList.remove("nav-open");
+      setExpanded(false);
+    });
+  });
+
+  // Close on resize to desktop
+  window.addEventListener("resize", () => {
+    if (!window.matchMedia("(max-width: 980px)").matches) {
+      nav.classList.remove("nav-open");
+      setExpanded(false);
+    }
+  });
+})();

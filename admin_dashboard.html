@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>لوحة تحكم المدربين | نهج</title>
+
+  <link rel="stylesheet" href="styles_v16.css" />
+    <link rel="stylesheet" href="admin_dashboard.css" />
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="topbar">
+      <div class="brand">لوحة تحكم المدربين</div>
+      <div class="row">
+        <button id="btn-signout" class="btn btn-ghost hidden" type="button">تسجيل خروج</button>
+      </div>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="login-view" class="card login-card">
+      <h2 style="margin:0 0 8px; color: var(--nahj-brown-dark); font-size: 18px;">دخول المشرف</h2>
+    
+
+      <div class="grid">
+        <div>
+          <label>البريد الإلكتروني</label>
+          <input id="login-email" type="email" autocomplete="email" placeholder="name@example.com">
+        </div>
+        <div>
+          <label>كلمة المرور</label>
+          <input id="login-pass" type="password" autocomplete="current-password" placeholder="••••••••">
+        </div>
+      </div>
+
+      <div class="row">
+        <button id="btn-login" class="btn btn-primary" type="button">دخول</button>
+      </div>
+
+      <div id="login-status" class="status"></div>
+    
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="dash-view" class="hidden">
+      <div class="card">
+        <h2 style="margin:0 0 8px; color: var(--nahj-brown-dark); font-size: 18px;">الطلبات</h2>
+        <p class="muted" style="margin:0 0 12px;">
+          بحث + فرز حسب التخصص/المدينة/الحالة. تنزيل الـ CV يتم برابط مؤقت (Signed URL) لأنه Bucket خاص.
+        </p>
+
+        <div class="grid">
+          <div>
+            <label>بحث عام (اسم/جوال/ايميل)</label>
+            <input id="f-search" placeholder="اكتب كلمة بحث..." />
+          </div>
+
+          <div>
+            <label>التخصص/المجال</label>
+            <input id="f-spec" placeholder="مثال: إدارة مشاريع" />
+          </div>
+
+          <div>
+            <label>المدينة</label>
+            <input id="f-city" placeholder="مثال: الرياض" />
+          </div>
+
+          <div>
+            <label>الحالة</label>
+            <select id="f-status">
+              <option value="">الكل</option>
+              <option value="new">جديد</option>
+              <option value="shortlisted">مرشح</option>
+              <option value="contacted">تم التواصل</option>
+              <option value="rejected">مرفوض</option>
+              <option value="archived">مؤرشف</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <button id="btn-refresh" class="btn btn-ghost" type="button">تحديث</button>
+          <button id="btn-apply" class="btn btn-primary" type="button">تطبيق الفلاتر</button>
+        </div>
+
+        <div id="dash-status" class="status"></div>
+
+        <div class="muted" id="count-line" style="margin-top:10px;"></div>
+
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 140px;">التاريخ</th>
+              <th>المدرب</th>
+              <th style="width: 220px;">التخصص / المدينة</th>
+              <th style="width: 120px;">الحالة</th>
+              <th style="width: 260px;">إجراءات</th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+            <tr><td colspan="5" class="muted">—</td></tr>
+          </tbody>
+        </table>
+
+        <div class="muted" style="margin-top: 10px;">
+          * يتم عرض آخر 200 طلب فقط (لحماية الأداء). إذا تبين Pagination أضيفها لك.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase_config.js"></script>
+<script src="admin_dashboard.js"></script>
+
+
+</body>
+</html>

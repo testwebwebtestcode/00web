@@ -154,14 +154,68 @@ html, body{width:100%; overflow-x:hidden;}
   }
 
   .hero-subtitle{
-    color:rgba(255,255,255,.92) !important;
+    color:#ffffff !important;
+    opacity:.92;
     font-size:17px;
     line-height:1.9;
     margin:0 0 22px;
     text-shadow:0 10px 22px rgba(0,0,0,.35);
   }
 
-  .hero-points{
+  .hero-subtitle--long{
+    max-width:640px;
+  }
+
+
+  
+
+  /* ===== Hero text (Premium / Elegant) ===== */
+  .hero-eyebrow{
+    width: fit-content;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(201,162,77,.35);
+    background: rgba(26,17,10,.32);
+    color: rgba(255,255,255,.92);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: .35px;
+    margin-bottom: 18px;
+    backdrop-filter: blur(10px);
+  }
+  .hero-eyebrow__dot{
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 5px rgba(201,162,77,.18);
+    flex: 0 0 8px;
+  }
+
+  .hero-title{
+    font-size: clamp(30px, 3.2vw, 54px);
+    line-height: 1.18;
+    margin: 0 0 16px;
+    letter-spacing: .25px;
+  }
+  .hero-title__accent{
+    color: var(--accent);
+  }
+
+  .hero-subtitle--elegant{
+    max-width: 620px;
+    padding-right: 14px;
+    border-right: 2px solid rgba(201,162,77,.55);
+  }
+
+  @media (max-width: 520px){
+    .hero-eyebrow{font-size: 12px;}
+    .hero-subtitle--elegant{border-right-width: 1px;}
+  }
+.hero-points{
     display:flex;
     flex-wrap:wrap;
     gap:10px 14px;
@@ -2376,11 +2430,6 @@ input{
     line-height: 1.95 !important;
   }
 
-  .lang-toggle{
-    padding: 8px 12px !important;
-    font-size: 12px !important;
-  }
-
   .navbar{
     flex-wrap: wrap !important;
     gap: 12px !important;
@@ -2545,80 +2594,874 @@ input{
 }
 
 
+
+/* ✅ FIX نهائي: القائمة متصلة + ما تقفل لما الماوس يدخلها */
+.nav-dropdown{
+  position: relative !important;
+}
+
+/* ✅ خليها ملتصقة تحت الزر مباشرة (تلغي الـ gap اللي يخليها تقفل) */
+.nav-dropdown-menu{
+  top: 100% !important;
+  margin-top: 0 !important;
+  transform: translateY(0) !important;
+}
+
+/* ✅ جسر يمنع تقفيل القائمة أثناء انتقال الماوس */
+.nav-dropdown-menu::before{
+  content: "" !important;
+  position: absolute !important;
+  top: -18px !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 18px !important;
+}
+
+/* ✅ تظل مفتوحة طالما الماوس على الزر أو داخل القائمة */
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu,
+.nav-dropdown.open .nav-dropdown-menu{
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+.hero,
+.hero img,
+.hero video{
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+
+/* ===== HEADER فوق كل شي ===== */
+.main-navbar{
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+
+  z-index: 99999 !important; /* فوق الهيرو والصور */
+
+}
+
+/* =========================================================
+   NAV DROPDOWN FIX + إزالة التحديد الأصفر + إزالة أيقونة البحث
+   - إزالة رابط "عرض المحاور داخل الصفحة"
+   - منع أي هايلايت/خلفية على زر محاورنا
+   - تثبيت القائمة وعدم إغلاقها أثناء المرور
+========================================================= */
+
+/* زر محاورنا: بدون خلفية أو تحديد */
+.nav-dropbtn{
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.nav-dropbtn:focus,
+.nav-dropbtn:focus-visible,
+.nav-dropbtn:active{
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* لو فيه ستايل عام يعطي Active/Focus أصفر للروابط */
+.nav-links a:focus,
+.nav-links a:focus-visible,
+.nav-links a:active{
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* القائمة تكون متصلة تحت الزر + ثابتة */
+.nav-dropdown{position: relative !important;}
+
+.nav-dropdown-menu{
+  position: absolute !important;
+  top: 100% !important;         /* متصلة */
+  right: 0 !important;
+  z-index: 99999 !important;
+
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+
+  transform: translateY(0) !important;
+}
+
+/* جسر يمنع التقفيل أثناء انتقال الماوس */
+.nav-dropdown-menu::before{
+  content: "" !important;
+  position: absolute !important;
+  top: -18px !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 18px !important;
+}
+
+/* تظل مفتوحة طالما الماوس على الزر أو داخل القائمة */
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu,
+.nav-dropdown.open .nav-dropdown-menu{
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+/* منع أي عنصر من قص القائمة */
+.main-navbar,
+.navbar,
+.nav-links{
+  overflow: visible !important;
+}
+
+/* اخفاء أيقونة البحث لو رجعت بالخطأ */
+.fa-search,
+.fa-magnifying-glass{
+  display: none !important;
+}
+
+
+/* ✅ Dropdown لون رايق مناسب + النص أبيض */
+.nav-dropdown-menu{
+  background: linear-gradient(180deg, #5A3A2A 0%, #3B2316 100%) !important; /* بني دافئ رايق */
+  border: 1px solid rgba(201,162,77,.30) !important; /* ذهبي خفيف */
+  box-shadow: 0 18px 55px rgba(0,0,0,.35) !important;
+}
+
+/* ✅ عنوان القائمة (ذهبي فخم) */
+.nav-dropdown-title{
+  color: #F3DCA4 !important;
+  border-bottom: 1px solid rgba(243,220,164,.18) !important;
+}
+
+/* ✅ روابط القائمة (نص أبيض) */
+.nav-dropdown-menu a{
+  color: #fff !important;
+}
+
+/* ✅ Hover أنيق بدون ما يغير النص */
+.nav-dropdown-menu a:hover{
+  background: rgba(201,162,77,.14) !important; /* ذهبي شفاف */
+  color: #fff !important;
+}
+
+
+/* ✅ توحيد لون محاورنا مع الهيدر + تنسيق ألوان القائمة المنسدلة */
+
+/* محاورنا في الهيدر (أبيض مثل الباقي) */
+.nav-dropbtn{
+  color: var(--nahj-white) !important;
+  background: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* حتى وهو مفتوح/مركز عليه ما يصير أصفر */
+.nav-dropbtn:focus,
+.nav-dropbtn:focus-visible,
+.nav-dropbtn:active,
+.nav-dropdown.open .nav-dropbtn{
+  color: var(--nahj-white) !important;
+  background: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* السهم يكون ذهبي خفيف */
+.nav-dropbtn i{
+  color: var(--nahj-gold-soft) !important;
+  opacity: .9 !important;
+}
+
+/* ✅ القائمة المنسدلة نفس ستايل الهيدر */
+.nav-dropdown-menu{
+  background: linear-gradient(180deg, var(--nahj-brown) 0%, var(--nahj-brown-dark) 100%) !important;
+  border: 1px solid rgba(210,167,83,.35) !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,.40) !important;
+}
+
+/* عنوان القائمة */
+.nav-dropdown-title{
+  color: var(--nahj-beige-light) !important;
+  border-bottom: 1px solid rgba(243,231,198,.18) !important;
+}
+
+/* روابط القائمة (أبيض) */
+.nav-dropdown-menu a{
+  color: var(--nahj-white) !important;
+}
+
+/* Hover ذهبي رايق بدون تغيير لون النص */
+.nav-dropdown-menu a:hover{
+  background: rgba(201,162,77,.14) !important;
+  color: var(--nahj-white) !important;
+}
+
+
+
+/* ✅ إزالة Badge الهيرو وسطر الكتابة المتحركة (تم إزالته من HTML) */
+.hero-badge,
+.hero-typing{display:none !important;}
+
+
+/* =====================
+   Logo tagline (مثل المرجع)
+   - بدون "الخدمات الاستشارية"
+===================== */
+.logo{gap:12px;}
+.logo-tagline{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:6px;
+  line-height:1.15;
+}
+.logo-line1{
+  font-weight:800;
+  font-size:14px;
+  color:#fff;
+  white-space:nowrap;
+}
+.logo-midline{
+  display:block;
+  width:165px;
+  height:2px;
+  background:rgba(255,255,255,.80);
+  border-radius:2px;
+}
+.logo-line2{
+  font-weight:800;
+  font-size:13px;
+  color:#fff;
+  white-space:nowrap;
+  letter-spacing:.5px;
+}
+
+@media(max-width:520px){
+  .logo-line1,.logo-line2{
+  font-weight:800;
+  font-size:13px;
+  color:#fff;
+  white-space:nowrap;
+  letter-spacing:.5px;
+}
+  .logo img{height:44px;}
+}
+
+.hero-eyebrow{display:none !important;}
+
+
+/* =========================================================
+   CONTACT PAGE | صفحة تواصل معنا (بنفس هوية نهج)
+========================================================= */
+
+.logo-link{
+  text-decoration:none;
+  color:inherit;
+}
+
+.nav-links a.is-active{
+  color: var(--accent);
+  position: relative;
+}
+.nav-links a.is-active::after{
+  content:"";
+  position:absolute;
+  left:0; right:0;
+  bottom:-8px;
+  margin:auto;
+  width:24px;
+  height:2px;
+  background: var(--accent);
+  border-radius:2px;
+  opacity:.9;
+}
+
+/* Contact hero */
+.contact-hero{
+  padding: 90px 0 60px !important;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(201,162,77,.18), transparent 45%),
+    radial-gradient(circle at 85% 85%, rgba(217,181,106,.16), transparent 45%),
+    linear-gradient(135deg, #121212 0%, #1b120c 45%, #22160e 100%);
+  color:#fff;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.contact-hero__inner{
+  max-width: 780px;
+  text-align: right;
+}
+.contact-hero__badge{
+  width: fit-content;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(201,162,77,.35);
+  background: rgba(0,0,0,.22);
+  color: rgba(255,255,255,.9);
+  font-weight: 800;
+  font-size: 13px;
+  backdrop-filter: blur(10px);
+}
+.contact-hero__badge .dot{
+  width:8px;height:8px;border-radius:50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 5px rgba(201,162,77,.18);
+}
+.contact-hero__title{
+  margin: 16px 0 10px;
+  font-size: clamp(30px, 3vw, 44px);
+  line-height: 1.22;
+  text-shadow: 0 10px 26px rgba(0,0,0,.45);
+}
+.contact-hero__subtitle{
+  margin: 0 0 22px;
+  color: rgba(255,255,255,.82);
+  max-width: 640px;
+  font-size: 16px;
+  line-height: 1.9;
+  text-shadow: 0 10px 20px rgba(0,0,0,.25);
+}
+.contact-hero__actions{
+  display:flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Contact grid */
+.contact-wrap{
+  padding: 80px 0 !important;
+  background: linear-gradient(135deg, #ffffff, var(--bg-soft));
+}
+.contact-grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 18px;
+}
+.contact-card{
+  background: var(--card);
+  border: 1px solid rgba(230,215,191,.9);
+  border-radius: 18px;
+  padding: 20px 18px;
+  display:flex;
+  gap: 14px;
+  align-items:flex-start;
+  box-shadow: 0 14px 28px rgba(0,0,0,.06);
+}
+.contact-card__icon{
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: linear-gradient(135deg, rgba(201,162,77,.18), rgba(217,181,106,.10));
+  border: 1px solid rgba(201,162,77,.22);
+  color: var(--accent);
+  flex: 0 0 44px;
+}
+.contact-card__content h2{
+  margin: 0 0 8px;
+  font-size: 18px;
+  color: var(--text);
+}
+.contact-card__content p{
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.85;
+}
+.contact-ar{font-weight:600;color:var(--text) !important;}
+.contact-en{font-size: 14px; opacity:.9;}
+.contact-links{margin-top: 6px;}
+.contact-link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color: var(--accent);
+  text-decoration:none;
+  font-weight:800;
+  font-size: 13px;
+}
+.contact-link:hover{text-decoration:underline;}
+
+.contact-list{display:flex;flex-direction:column;gap:10px}
+.contact-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(201,162,77,.08);
+  border: 1px solid rgba(201,162,77,.18);
+}
+.contact-item .label{
+  color: var(--text);
+  font-weight:800;
+  font-size: 13px;
+  opacity:.9;
+}
+.contact-item .value,
+.contact-card .value{
+  color: var(--accent);
+  text-decoration:none;
+  font-weight:900;
+}
+.contact-card .value:hover{text-decoration:underline;}
+.contact-card .hint{
+  font-size: 13px;
+  opacity:.85;
+  margin-top: 6px;
+}
+
+@media(max-width: 900px){
+  .contact-grid{grid-template-columns: 1fr;}
+  .contact-hero{padding: 70px 0 50px !important;}
+}
+
+
+/* ==========================================================
+   CONTACT PAGE (OFFICIAL COMPANY LAYOUT)
+   ========================================================== */
+
+.contact-section{
+  padding: clamp(24px, 3vw, 44px) 0 70px;
+}
+
+.contact-panel{
+  display:grid;
+  grid-template-columns: 1.25fr .9fr;
+  gap: clamp(16px, 2.4vw, 26px);
+  align-items: stretch;
+}
+
+.contact-panel__details{
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(210,167,83,0.16);
+  border-radius: 18px;
+  padding: clamp(18px, 2.4vw, 26px);
+  box-shadow: 0 18px 35px rgba(0,0,0,0.22);
+}
+
+.contact-panel__head{
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+}
+
+.contact-panel__title{
+  margin: 0 0 6px;
+  font-size: clamp(18px, 2.2vw, 22px);
+  letter-spacing: .2px;
+  color: #fff;
+}
+
+.contact-panel__note{
+  margin: 0;
+  color: rgba(255,255,255,0.78);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.contact-rows{
+  display:flex;
+  flex-direction:column;
+  gap: 14px;
+}
+
+.contact-row{
+  display:flex;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.contact-row:last-child{
+  border-bottom: none;
+  padding-bottom: 4px;
+}
+
+.contact-row__icon{
+  width: 44px;
+  height: 44px;
+  display:grid;
+  place-items:center;
+  border-radius: 14px;
+  background: rgba(210,167,83,0.10);
+  border: 1px solid rgba(210,167,83,0.22);
+  flex: 0 0 auto;
+}
+
+.contact-row__icon i{
+  color: rgba(210,167,83,0.92);
+  font-size: 18px;
+}
+
+.contact-row__body{
+  flex:1;
+  min-width: 0;
+}
+
+.contact-row__label{
+  font-weight: 700;
+  color:#fff;
+  margin: 0 0 6px;
+  font-size: 14px;
+}
+
+.contact-row__value{
+  color: rgba(255,255,255,0.86);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.contact-row__value--en{
+  margin-top: 6px;
+  color: rgba(255,255,255,0.66);
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  direction: ltr;
+  text-align: left;
+}
+
+.contact-inline-label{
+  color: rgba(255,255,255,0.60);
+  margin-inline-end: 6px;
+  font-size: 13px;
+}
+
+.contact-row__link{
+  display:inline-flex;
+  margin-top: 8px;
+  color: rgba(210,167,83,0.96);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(210,167,83,0.38);
+  padding-bottom: 2px;
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.contact-row__link:hover{
+  opacity: .9;
+  transform: translateY(-1px);
+}
+
+.contact-row__value-link{
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.22);
+  padding-bottom: 2px;
+}
+
+.contact-row__value-link:hover{
+  border-bottom-color: rgba(210,167,83,0.6);
+}
+
+.contact-cta-strip{
+  margin-top: 16px;
+  display:flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cta-chip{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(210,167,83,0.22);
+  color:#fff;
+  text-decoration:none;
+  font-weight: 700;
+  font-size: 13px;
+  transition: transform .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.cta-chip i{
+  color: rgba(210,167,83,0.92);
+}
+
+.cta-chip:hover{
+  transform: translateY(-1px);
+  background: rgba(210,167,83,0.08);
+  border-color: rgba(210,167,83,0.34);
+}
+
+.contact-panel__map{
+  display:flex;
+}
+
+.map-card{
+  width: 100%;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(210,167,83,0.14);
+  border-radius: 18px;
+  overflow:hidden;
+  box-shadow: 0 18px 35px rgba(0,0,0,0.22);
+}
+
+.map-card__head{
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.map-card__head h3{
+  margin:0 0 6px;
+  color:#fff;
+  font-size: 16px;
+}
+
+.map-card__head p{
+  margin:0;
+  color: rgba(255,255,255,0.72);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.map-frame{
+  height: 320px;
+  background: rgba(0,0,0,0.25);
+}
+
+.map-frame iframe{
+  width:100%;
+  height:100%;
+  border:0;
+  filter: saturate(0.9) contrast(1.05);
+}
+
+/* Responsive */
 @media (max-width: 980px){
-
-  .nahj-quote{
-    padding: 26px 16px !important;
-    gap: 14px !important;
-    justify-content: center !important;
+  .contact-panel{
+    grid-template-columns: 1fr;
   }
-
-  .nahj-quote .q-img{
-    flex: 0 0 auto !important;
-    width: 100% !important;
-    text-align: center !important;
-  }
-
-  .nahj-quote .q-img img{
-    width: 170px !important;     /* ✅ بدل ما يكون ضخم */
-    max-width: 70% !important;
-    border-radius: 18px !important;
-  }
-
-  .nahj-quote .q-text{
-    flex: 1 1 100% !important;
-    padding: 0 !important;
-    text-align: center !important;
-  }
-
-  .nahj-quote .q-text p{
-    font-size: 18px !important;
-    line-height: 1.95 !important;
-    margin-bottom: 10px !important;
-  }
-
-  .nahj-quote .q-text h4{
-    font-size: 16px !important;
+  .map-frame{
+    height: 280px;
   }
 }
 
-@media (max-width: 980px){
 
-  .nahj-philo{
-    padding: 34px 16px !important;
-  }
 
-  .nahj-philo-grid{
-    padding: 22px 16px !important;
-    border-radius: 20px !important;
-  }
+/* ==========================================================
+   CONTACT PAGE V7 – Contrast Fix (Corporate / Premium)
+   - Light section after dark hero
+   - Dark readable text + gold accents
+========================================================== */
 
-  /* ✅ أهم جزء: تقليل المسافة يمين */
-  .nahj-timeline{
-    padding-right: 46px !important;
-  }
-
-  /* خط التايملاين + النقاط أقرب لليمين */
-  .nahj-timeline::before,
-  .nahj-dot,
-  .nahj-item::after{
-    right: 18px !important;
-  }
-
-  /* الكروت تتحرك يمين (بدون فراغ ضخم) */
-  .nahj-card{
-    margin-right: 46px !important;
-    padding: 14px 14px !important;
-    border-radius: 16px !important;
-  }
-
-  .nahj-card h4{
-    font-size: 16px !important;
-    line-height: 1.6 !important;
-  }
-
-  .nahj-card p{
-    font-size: 14px !important;
-    line-height: 1.8 !important;
-  }
+.contact-hero{
+  /* keep hero dark but ensure text contrast */
+  color:#fff;
 }
+.contact-hero__title{color:#fff !important;}
+.contact-hero__subtitle{color:rgba(255,255,255,.86) !important;}
+.contact-hero__badge{color:rgba(255,255,255,.92) !important; border-color: rgba(201,162,77,.45) !important;}
+.contact-hero__badge .dot{background: var(--accent) !important;}
+
+.contact-section{
+  background: linear-gradient(180deg, var(--bg-soft), #ffffff);
+  border-top: 1px solid rgba(210,167,83,.16);
+}
+
+.contact-panel__details,
+.map-card{
+  background:#ffffff !important;
+  border:1px solid rgba(210,167,83,.22) !important;
+  box-shadow: 0 18px 45px rgba(0,0,0,.08) !important;
+}
+
+.contact-panel__title{
+  color: var(--text) !important;
+}
+.contact-panel__note{
+  color: var(--muted) !important;
+}
+
+.contact-row{
+  background: linear-gradient(180deg, #ffffff, rgba(201,162,77,.05)) !important;
+  border: 1px solid rgba(210,167,83,.18) !important;
+}
+
+.contact-row__icon{
+  background: rgba(201,162,77,.12) !important;
+  border: 1px solid rgba(210,167,83,.32) !important;
+  box-shadow: 0 10px 20px rgba(0,0,0,.08) !important;
+}
+.contact-row__icon i{color: var(--accent) !important;}
+
+.contact-row__label{
+  color: var(--text) !important;
+}
+
+.contact-row__value{
+  color: var(--muted) !important;
+}
+
+.contact-row__value--en{
+  color: var(--muted) !important;
+  opacity: .95;
+}
+
+.contact-inline-label{
+  color: rgba(43,26,15,.65) !important;
+}
+
+.contact-row__value-link{
+  color: var(--text) !important;
+  border-bottom: 1px solid rgba(201,162,77,.55) !important;
+}
+
+.contact-row__link{
+  color: var(--accent) !important;
+}
+.contact-row__link:hover{
+  color: var(--accent-soft) !important;
+}
+
+.contact-cta-strip{
+  background: linear-gradient(135deg, rgba(201,162,77,.10), rgba(255,255,255,.70)) !important;
+  border: 1px solid rgba(210,167,83,.22) !important;
+}
+
+.cta-chip{
+  background:#111 !important;
+  color:#fff !important;
+  border:1px solid rgba(201,162,77,.35) !important;
+}
+.cta-chip i{color: var(--accent) !important;}
+.cta-chip:hover{
+  transform: translateY(-2px);
+  background:#1a1a1a !important;
+}
+
+/* map */
+.map-card__head h3{color: var(--text) !important;}
+.map-card__head p{color: var(--muted) !important;}
+
+
+/* ==========================================================
+   CONTACT PAGE V8 – Remove Location + Centered Layout
+   - Removed address block + map
+========================================================== */
+.contact-panel{
+  grid-template-columns: 1fr !important;
+  max-width: 980px;
+  margin: 0 auto;
+}
+.contact-panel__map{display:none !important;}
+
+
+/* =========================================================
+   Contact page refinements (v9)
+   - Remove badge circle section
+   - English (LTR) alignment fix
+   - Premium language toggle button (EN/AR)
+========================================================= */
+
+/* Premium language toggle (matches the reference style) */
+.lang-toggle{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+
+  padding:10px 14px;
+  border-radius:999px;
+
+  background: linear-gradient(135deg,
+    rgba(255,255,255,.10),
+    rgba(201,162,77,.10)
+  );
+  border:1px solid rgba(201,162,77,.45);
+
+  color:#fff;
+  font-weight:800;
+  font-size:13px;
+  letter-spacing:.35px;
+  text-decoration:none;
+  cursor:pointer;
+
+  box-shadow: 0 12px 26px rgba(0,0,0,.20);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+}
+
+.lang-toggle i{
+  font-size:13px;
+  color: var(--accent);
+  opacity:.95;
+}
+
+.lang-toggle:hover{
+  transform: translateY(-1px);
+  border-color: rgba(201,162,77,.70);
+  background: linear-gradient(135deg,
+    rgba(255,255,255,.14),
+    rgba(201,162,77,.14)
+  );
+  box-shadow: 0 16px 32px rgba(0,0,0,.26);
+}
+.lang-toggle:active{
+  transform: translateY(0) scale(.98);
+}
+
+/* Ensure the old badge styles don't create spacing if it exists */
+.contact-hero__badge{display:none !important;}
+
+/* Arabic default alignment */
+html[dir="rtl"] .contact-hero__inner{ text-align:right; }
+html[dir="rtl"] .contact-panel{ direction:rtl; }
+
+/* English alignment & layout (LTR) */
+html[dir="ltr"] .contact-hero__inner{
+  text-align:left;
+}
+html[dir="ltr"] .contact-hero__subtitle{
+  margin-left:0;
+}
+html[dir="ltr"] .contact-hero__actions{
+  justify-content:flex-start;
+}
+html[dir="ltr"] .contact-panel,
+html[dir="ltr"] .contact-panel__details,
+html[dir="ltr"] .contact-panel__head,
+html[dir="ltr"] .contact-row__body{
+  text-align:left;
+  direction:ltr;
+}
+
+/* Flip the back arrow in English */
+html[dir="ltr"] .btn-ghost i.fa-arrow-right{
+  transform: rotate(180deg);
+}
+
+/* Keep phone/email/site numbers LTR always */
+.ltr-number{
+  direction:ltr;
+  unicode-bidi: plaintext;
+  display:inline-block;
+}
+
+/* Small polish: align the inline labels in English */
+html[dir="ltr"] .contact-inline-label{
+  margin-right:8px;
+  margin-left:0;
+}
+
+
+/* === LTR fixes for dropdown (English) === */
+[dir="ltr"] .nav-dropdown-menu{ left:0 !important; right:auto !important; text-align:left; }
+[dir="ltr"] .nav-dropdown-title{ text-align:left; }
+[dir="ltr"] .nav-dropdown-menu a{ text-align:left; }

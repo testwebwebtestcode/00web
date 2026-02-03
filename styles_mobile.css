@@ -2544,81 +2544,109 @@ input{
   pointer-events: auto !important;
 }
 
+/* =========================================================
+   ✅ Mobile Upgrade Pack (Nahj) - v1
+   - Better navbar on phones (hamburger + vertical menu)
+   - Cleaner spacing & buttons on small screens
+========================================================= */
+
+.nav-toggle-btn{
+  display:none;
+  align-items:center;
+  justify-content:center;
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  border:1px solid rgba(201,162,77,.38);
+  background: linear-gradient(135deg, rgba(255,255,255,.10), rgba(201,162,77,.10));
+  color:#fff;
+  cursor:pointer;
+  box-shadow: 0 10px 18px rgba(0,0,0,.18);
+}
+.nav-toggle-btn i{ font-size:18px; }
 
 @media (max-width: 980px){
+  .main-navbar{ padding: 12px 0; }
+  .container{ width: 92%; }
 
-  .nahj-quote{
-    padding: 26px 16px !important;
-    gap: 14px !important;
-    justify-content: center !important;
+  .navbar{
+    flex-wrap: wrap;
+    gap: 10px;
   }
 
-  .nahj-quote .q-img{
-    flex: 0 0 auto !important;
+  .logo img{ height: 42px; }
+
+  .nav-toggle-btn{ display:inline-flex; margin-inline-start:auto; }
+
+  /* Hide links by default on mobile */
+  .nav-links{
+    display:none;
+    width:100%;
+    flex-direction: column;
+    gap: 0;
+    background: #0f0f0f;
+    border-top: 1px solid rgba(255,255,255,.08);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    border-radius: 16px;
+    padding: 10px 0;
+    overflow:hidden;
+  }
+
+  /* Open state */
+  .navbar.nav-open .nav-links{ display:flex; }
+
+  .nav-links li{ width:100%; }
+
+  .nav-links a,
+  .nav-dropbtn{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 12px 16px;
+    font-size: 15px;
+  }
+
+  .nav-links a:hover{ background: rgba(201,162,77,.10); }
+
+  .extras{
+    width:100%;
+    justify-content:flex-start;
+    gap:10px;
+    flex-wrap: wrap;
+  }
+
+  .join-trainer{
+    padding: 9px 12px;
+    border-radius: 999px;
+    background: rgba(201,162,77,.12);
+    border: 1px solid rgba(201,162,77,.35);
+  }
+
+  .lang-toggle{
+    padding: 9px 12px;
+  }
+
+  /* Dropdown menu in mobile becomes stacked */
+  .nav-dropdown-menu{
+    position: static !important;
+    transform: none !important;
     width: 100% !important;
-    text-align: center !important;
+    margin-top: 6px;
+    border-radius: 14px;
   }
 
-  .nahj-quote .q-img img{
-    width: 170px !important;     /* ✅ بدل ما يكون ضخم */
-    max-width: 70% !important;
-    border-radius: 18px !important;
-  }
-
-  .nahj-quote .q-text{
-    flex: 1 1 100% !important;
-    padding: 0 !important;
-    text-align: center !important;
-  }
-
-  .nahj-quote .q-text p{
-    font-size: 18px !important;
-    line-height: 1.95 !important;
-    margin-bottom: 10px !important;
-  }
-
-  .nahj-quote .q-text h4{
-    font-size: 16px !important;
+  .nav-dropdown.open .nav-dropdown-menu{
+    display:block !important;
   }
 }
 
-@media (max-width: 980px){
+@media (max-width: 560px){
+  section{ padding: 64px 18px; }
 
-  .nahj-philo{
-    padding: 34px 16px !important;
-  }
+  .btn{ width:100%; justify-content:center; }
+  .btn + .btn{ margin-top: 10px; }
 
-  .nahj-philo-grid{
-    padding: 22px 16px !important;
-    border-radius: 20px !important;
-  }
-
-  /* ✅ أهم جزء: تقليل المسافة يمين */
-  .nahj-timeline{
-    padding-right: 46px !important;
-  }
-
-  /* خط التايملاين + النقاط أقرب لليمين */
-  .nahj-timeline::before,
-  .nahj-dot,
-  .nahj-item::after{
-    right: 18px !important;
-  }
-
-  /* الكروت تتحرك يمين (بدون فراغ ضخم) */
-  .nahj-card{
-    margin-right: 46px !important;
-    padding: 14px 14px !important;
-    border-radius: 16px !important;
-  }
-
-  .nahj-card h4{
-    font-size: 16px !important;
-    line-height: 1.6 !important;
-  }
-
-  .nahj-card p{
-    font-size: 14px !important;
-    line-height: 1.8 !important;
-  }
+  /* Footer layout */
+  .footer-grid{ grid-template-columns: 1fr !important; gap: 18px; }
 }
