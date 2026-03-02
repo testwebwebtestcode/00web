@@ -6,7 +6,7 @@
   <title>لوحة تحكم المدربين | نهج</title>
 
   <link rel="stylesheet" href="styles_v16.css" />
-    <link rel="stylesheet" href="admin_dashboard.css" />
+  <link rel="stylesheet" href="admin_dashboard.css" />
 </head>
 <body>
   <div class="wrap">
@@ -18,10 +18,8 @@
       </div>
     </div>
 
-    <!-- LOGIN -->
     <div id="login-view" class="card login-card">
       <h2 style="margin:0 0 8px; color: var(--nahj-brown-dark); font-size: 18px;">دخول المشرف</h2>
-    
 
       <div class="grid">
         <div>
@@ -39,10 +37,8 @@
       </div>
 
       <div id="login-status" class="status"></div>
-    
     </div>
 
-    <!-- DASHBOARD -->
     <div id="dash-view" class="hidden">
       <div class="card">
         <h2 style="margin:0 0 8px; color: var(--nahj-brown-dark); font-size: 18px;">الطلبات</h2>
@@ -88,20 +84,22 @@
 
         <div class="muted" id="count-line" style="margin-top:10px;"></div>
 
-        <table>
-          <thead>
-            <tr>
-              <th style="width: 140px;">التاريخ</th>
-              <th>المدرب</th>
-              <th style="width: 220px;">التخصص / المدينة</th>
-              <th style="width: 120px;">الحالة</th>
-              <th style="width: 260px;">إجراءات</th>
-            </tr>
-          </thead>
-          <tbody id="tbody">
-            <tr><td colspan="5" class="muted">—</td></tr>
-          </tbody>
-        </table>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 140px;">التاريخ</th>
+                <th>المدرب</th>
+                <th style="width: 220px;">التخصص / المدينة</th>
+                <th style="width: 120px;">الحالة</th>
+                <th style="width: 260px;">إجراءات</th>
+              </tr>
+            </thead>
+            <tbody id="tbody">
+              <tr><td colspan="5" class="muted">—</td></tr>
+            </tbody>
+          </table>
+        </div>
 
         <div class="muted" style="margin-top: 10px;">
           * يتم عرض آخر 200 طلب فقط (لحماية الأداء). إذا تبين Pagination أضيفها لك.
@@ -111,11 +109,8 @@
 
   </div>
 
-  <!-- Supabase -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="./supabase_config.js"></script>
-<script src="./admin_dashboard.js"></script>
-
-
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./supabase_config.js"></script>
+  <script src="./admin_dashboard.js"></script>
 </body>
 </html>
