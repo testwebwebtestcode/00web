@@ -6,7 +6,9 @@
 ========================================================= */
 
 window.SUPABASE_URL = "https://pwpriirdjhfaxtcjxmee.supabase.co";
-window.SUPABASE_ANON_KEY = "sb_publishable_d43HFAfSUZJdI2yXPxPzlA_cPyXChFe";
+window.SUPABASE_ANON_KEY = "PUT_ANON_PUBLIC_KEY_HERE";
 
-// supabase is loaded from CDN in the pages
-window.sb = supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
+window.supabaseClient = supabase.createClient(
+  window.SUPABASE_URL,
+  window.SUPABASE_ANON_KEY
+);

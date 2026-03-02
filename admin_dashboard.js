@@ -1,6 +1,8 @@
 console.log("admin_dashboard.js loaded");
 
 document.addEventListener("DOMContentLoaded", () => {
+  const sb = window.sb; // ✅ هذا هو Supabase client الصحيح
+
   const btnLogin = document.getElementById("btn-login");
   const btnSignout = document.getElementById("btn-signout");
 
@@ -12,10 +14,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const loginStatus = document.getElementById("login-status");
 
-  function setStatus(el, msg) {
-    if (!el) return;
-    el.textContent = msg;
-    el.style.display = "block";
+  function setStatus(msg) {
+    if (!loginStatus) return;
+    loginStatus.textContent = msg;
+    loginStatus.style.display = "block";
   }
 
   function showDashboard() {
@@ -30,37 +32,40 @@ document.addEventListener("DOMContentLoaded", () => {
     btnSignout.classList.add("hidden");
   }
 
-  // زر الدخول
-  btnLogin?.addEventListener("click", async () => {
-    setStatus(loginStatus, "جاري تسجيل الدخول...");
+  // 🔐 تسجيل الدخول
+  btnLogin.addEventListener("click", async () => {
+    setStatus("جاري تسجيل الدخول...");
 
-    const email = (emailEl?.value || "").trim();
-    const password = passEl?.value || "";
+    const email = emailEl.value.trim();
+    const password = passEl.value;
 
     if (!email || !password) {
-      setStatus(loginStatus, "اكتبي الإيميل وكلمة المرور");
+      setStatus("اكتبي الإيميل وكلمة المرور");
       return;
     }
 
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    const { data, error } = await sb.auth.signInWithPassword({
+      email,
+      password
+    });
 
     if (error) {
-      setStatus(loginStatus, error.message);
+      setStatus(error.message);
       return;
     }
 
-    setStatus(loginStatus, "تم تسجيل الدخول ✅");
+    setStatus("تم تسجيل الدخول ✅");
     showDashboard();
   });
 
-  // زر الخروج
-  btnSignout?.addEventListener("click", async () => {
-    await supabase.auth.signOut();
+  // 🚪 تسجيل الخروج
+  btnSignout.addEventListener("click", async () => {
+    await sb.auth.signOut();
     showLogin();
   });
 
-  // لو فيه جلسة موجودة مسبقًا
-  supabase.auth.getSession().then(({ data }) => {
+  // 🔁 فحص الجلسة عند فتح الصفحة
+  sb.auth.getSession().then(({ data }) => {
     if (data?.session) showDashboard();
     else showLogin();
   });
