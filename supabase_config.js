@@ -6,7 +6,7 @@
 ========================================================= */
 
 window.SUPABASE_URL = "https://pwpriirdjhfaxtcjxmee.supabase.co";
-window.SUPABASE_ANON_KEY = "PUT_ANON_PUBLIC_KEY_HERE";
+window.SUPABASE_ANON_KEY = "sb_publishable_d43HFAfSUZJdI2yXPxPzlA_cPyXChFe";
 
 window.supabaseClient = supabase.createClient(
   window.SUPABASE_URL,
